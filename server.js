@@ -3,7 +3,9 @@ const express = require('express');
 const layouts = require('express-ejs-layouts');
 const app = express();
 const session = require('express-session')
-const SECRET_SESSION = process.env.SECRETE_SESSION;
+const SECRET_SESSION = process.env.SECRET_SESSION;
+const passport = require('./config/ppConfig')
+const flash = require('connect-flash')
 
 app.set('view engine', 'ejs');
 
@@ -18,10 +20,16 @@ app.use(layouts);
 // setting this to true 
 
 app.use(session({
-  secrete: SECRET_SESSION,
+  secret: SECRET_SESSION,
   resave: false,
-  saveUninitialaized: true
+  saveUninitialized: true
 }))
+// Make sure put this under session 
+app.use(passport.initialize())
+app.use(passport.session())
+
+// flash for temporary message to the user (error message to users)
+app.use(flash());
 
 app.get('/', (req, res) => {
   res.render('index');
