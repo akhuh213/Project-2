@@ -1,0 +1,53 @@
+<% if (data) { %>
+<%data.forEach(d => { %>
+<% let cal = d.recipe.calories/d.recipe.yield %>
+<% let calStr = cal.toString() %>
+<% let carPerSer = calStr.split('.',1).toString() %>
+<% let detail = d.recipe %>
+
+<div>
+    <h4><%=detail.label%></h4>
+    <img src="<%= detail.image%>"></br>
+    <label for="calPerSer"> Calories per serving: </label>
+    <%= carPerSer  %> kcal</br>
+
+    <label for="diet">Diet:</label>
+    <%= detail.dietLabels[0]%>
+    <%= detail.dietLabels[1]%> </br>
+
+    <label for="health">Preference:</label>
+    <%= detail.healthLabels[0]%>
+    <%= detail.healthLabels[1]%></br>  
+    <%= detail.healthLabels[2]%> 
+    <%= detail.healthLabels[3]%> </br>
+
+    <label for="fat">Fat :</label>
+    <%= detail.totalNutrients.FAT.quantity.toString().split('.',1)%>g 
+    <label for="carbs">Carbs: </label>
+    <%= detail.totalNutrients.CHOCDF.quantity.toString().split('.',1) %> g</br>
+    <label for="fiber"> Fiber :</label>
+    <%= detail.totalNutrients.FIBTG.quantity.toString().split('.',1) %> g
+    <label for="protein"> Protein: </label>
+    <%= detail.totalNutrients.PROCNT.quantity.toString().split('.',1) %> g</br></br>
+
+    <a href="<%=detail.url%>" class="waves-effect waves-light btn-small">Recipe</a>
+</div>
+
+    <form action="/myrecipe" method="POST">
+        <input hidden type="text" name="name" id="name" value="<%= detail.label %>">
+        <input hidden type="text" name="cal" id="cal" value="<%= carPerSer %>">
+        <input hidden type="text" name="ingr" id="ingr" value="<%= detail.ingredientLines[0] %>">
+
+    <button type= "submit">Add to My recipe</button>
+    </form>
+    <!-- <a href="/myrecipe" class="waves-effect waves-light btn-small">Save to my recipe</a> -->
+
+
+    <form action="/myRecipe/" method="POST"></form>
+    <a href="/calorielog" class="waves-effect waves-light btn-small">log to my calorie</a>
+    </form>
+
+</div>
+
+<%  }) %>
+<%} %>

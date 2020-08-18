@@ -35,14 +35,14 @@ router.post('/signup', (req,res) =>{
       // email already exist
       console.log('Email already exist')
       // FLASH 
-      req.flash('Email already exist. Please try again')
+      req.flash('error','Email already exist. Please try again')
       res.redirect ('/auth/signup')
 
     }
   })
   .catch(error => {
     console.log('Error', error);
-    req.flash('Error, unfortunately... ')
+    req.flash('error',`Error, unfortunately... ${error}`)
     res.redirect('/auth/signup')
 
   })
@@ -62,7 +62,7 @@ router.post('/login', (req, res) => {
 
 router.get('/logout', (req,res) => {
   req.logout();
-  req.flash('See you soon')
+  req.flash('success','See you soon')
   res.redirect('/');
 })
 

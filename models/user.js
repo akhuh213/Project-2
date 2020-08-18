@@ -1,7 +1,7 @@
 'use strict';
 const bcrypt = require('bcrypt');
 const {
-  Model
+  Model, STRING
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.user.hasMany(models.calorieLog)
+      models.user.hasMany(models.my_recipe)
+      
     }
   };
   user.init({
@@ -40,7 +42,10 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Password must be between 8 to 99 characters'
         }
       }
-    }
+    },
+    weight: DataTypes.DECIMAL,
+    height: DataTypes.DECIMAL,
+    standardCal: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'user',
