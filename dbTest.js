@@ -10,3 +10,4 @@ db.user.findOne()
     console.log(createdCalorieLog.get())
 })
 })
+

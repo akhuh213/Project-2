@@ -22,20 +22,38 @@ router.get('/', (req, res) => {
             app_id:RECIPE_API_ID,
             app_key:RECIPE_API_KEY,
             from:0,
-            to:9,
+            to:9         
+        }
+    }
+    let cal ={
+        params: {
             calories:calorie            
         }
     }
-    axios.get(recipeUrl,qs)
+
+    if(calorie){
+    axios.get(recipeUrl,qs,cal)
     .then(response =>{
         
         let data = response.data.hits
+        // console.log('Look at me!!!!!!!!!!!!',data[0].ingredient)
         res.render('results', {data})
     }).catch(err => {
         console.log(err)
     })
+    }else{
+        axios.get(recipeUrl,qs)
+        .then(response =>{
+            
+            let data = response.data.hits
+            // console.log('Look at me!!!!!!!!!!!!',data[0].ingredient)
+            res.render('results', {data})
+        }).catch(err => {
+            console.log(err)
+    })
+   
+}
 })
-
 
 
 

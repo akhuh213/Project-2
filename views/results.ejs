@@ -36,9 +36,9 @@
     <form action="/myrecipe" method="POST">
         <input hidden type="text" name="name" id="name" value="<%= detail.label %>">
         <input hidden type="text" name="cal" id="cal" value="<%= carPerSer %>">
+        <input hidden type="text" name="recipeUrl" id="recipeUrl" value="<%= detail.url %>">
         <input hidden type="text" name="ingr" id="ingr" value="<%= detail.ingredientLines[0] %>">
-
-    <button type= "submit">Add to My recipe</button>
+        <button type= "submit">Add to My recipe</button>
     </form>
     <!-- <a href="/myrecipe" class="waves-effect waves-light btn-small">Save to my recipe</a> -->
 

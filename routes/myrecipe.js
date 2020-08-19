@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const axios =require('axios');
+const axios = require('axios');
 
 const db = require('../models');
+const isLoggedIn = require('../middleware/isLoggedIn');
+
 const { response } = require('express');
 
 
@@ -13,28 +15,44 @@ let RECIPE_API_KEY = process.env.EDAMAN_RECIPE_API_KEY
 const recipeUrl = `https://api.edamam.com/search?`
 
 
-router.get('/', (req, res) => {
-    db.my_recipe.findAll()
-    .then(response => {
+router.get('/',isLoggedIn,(req, res) => {
 
-        res.render('myrecipe', { data: response})
+    db.my_recipe.findAll({
+        where: { userId: req.user.dataValues.id},
     })
-})
+    .then((recipe) => {
+        // user.my_recipes.forEach(recipe => {
+        // console.log('loookkkk 25555555',recipe)
+        res.render('myrecipe',{recipe})
+        // console.log('11111111',user.my_recipes)
 
-router.post('/', function(req, res) {
-    let formData = req.body;
-    db.my_recipe.findOrCreate({
-        where: {name:formData.name},
-        defaults: {ingredient:formData.ingr}
-    })
-    .then(( [newRecipe, created]) =>{
-        console.log(`This created: ${created}`)
-        res.redirect('myrecipe') ;
-        //ejs
+        // })
     }).catch(err => {
         console.log(err)
     })
 })
+
+
+
+
+router.post('/', isLoggedIn, (req, res) => {
+    let formData = req.body;
+
+    db.my_recipe.findOrCreate({
+        where: { userId: req.user.dataValues.id, 
+                name:formData.name},
+        defaults: { name: formData.name,
+                    ingredient: formData.ingr,
+                    recipeUrl: formData.url,
+                    cal:formData.cal}
+    }).then(([newRecipe, created]) =>{
+        res.redirect('myrecipe');
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
 
 
 

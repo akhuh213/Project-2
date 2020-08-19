@@ -61,7 +61,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
+  
+res.render('profile', { user: req.user})
+  
 });
 
 app.get('/', function(req,res){
@@ -77,39 +79,6 @@ app.use('/myrecipe', require ('./routes/myrecipe'));
 
 
 
-
-
-// edamam Api testing (food-database)
-// Axios.get(`https://api.edamam.com/api/food-database/v2/parser?ingr=hamburger&app_id=${API_ID}&app_key=${API_KEY}`)
-// .then(function(response)
-// {
-//   let nutritionData = response.data.parsed[0].food
-//   console.log(nutritionData)
-//   console.log(response.data.hints[0].measures)
-// })
-
-// Axios.post('https://trackapi.nutritionix.com/v2/natural/exercise',{
-//   headers : {
-//   "x-app-id": "108d63fe",
-//   "x-app-key": "2835cc22c8085894b18ecd21a3d4c8a0",
-//   "Content-Type":"application/json"
-//   },
-//   body:{
-//   "query" : "ran 3 miles"
-//   }
-
-//   })
-//   .then(function(response)
-//   {
-//     console.log(response)
-
-//   })
-
-
-
-// x-remote-user-id:‘0’,
-// content-type: ‘application/json’,
-// accept: ‘application/json’
 
 
 
