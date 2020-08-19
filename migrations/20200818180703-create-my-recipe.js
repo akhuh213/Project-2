@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       ingredient: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1234)
       },
       recipeUrl: {
         type: Sequelize.STRING

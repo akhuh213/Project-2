@@ -21,13 +21,9 @@ router.get('/',isLoggedIn,(req, res) => {
         where: { userId: req.user.dataValues.id},
     })
     .then((recipe) => {
-        // user.my_recipes.forEach(recipe => {
-        // console.log('loookkkk 25555555',recipe)
-        res.render('myrecipe',{recipe})
-        // console.log('11111111',user.my_recipes)
-
-        // })
-    }).catch(err => {
+    res.render('myrecipe',{recipe})
+    })
+    .catch(err => {
         console.log(err)
     })
 })

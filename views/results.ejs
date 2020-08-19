@@ -2,14 +2,16 @@
 <%data.forEach(d => { %>
 <% let cal = d.recipe.calories/d.recipe.yield %>
 <% let calStr = cal.toString() %>
-<% let carPerSer = calStr.split('.',1).toString() %>
+<% let calPerSer = calStr.split('.',1).toString() %>
 <% let detail = d.recipe %>
 
 <div>
     <h4><%=detail.label%></h4>
     <img src="<%= detail.image%>"></br>
+    <label for="calorie"></label>
+    <%= detail.calories.toString().split('.',1) %> 
     <label for="calPerSer"> Calories per serving: </label>
-    <%= carPerSer  %> kcal</br>
+    <%= calPerSer  %> kcal</br>
 
     <label for="diet">Diet:</label>
     <%= detail.dietLabels[0]%>
@@ -35,12 +37,16 @@
 
     <form action="/myrecipe" method="POST">
         <input hidden type="text" name="name" id="name" value="<%= detail.label %>">
-        <input hidden type="text" name="cal" id="cal" value="<%= carPerSer %>">
+        <input hidden type="text" name="cal" id="cal" value="<%= calPerSer %>">
         <input hidden type="text" name="recipeUrl" id="recipeUrl" value="<%= detail.url %>">
-        <input hidden type="text" name="ingr" id="ingr" value="<%= detail.ingredientLines[0] %>">
-        <button type= "submit">Add to My recipe</button>
+        <%ingrstring =""%> 
+        <%detail.ingredientLines.forEach(ingr =>{ %>
+          <% ingrstring=ingrstring+ingr+'; '  %>   
+        <%})  %> 
+        <input hidden type="text" name="ingr" id="ingr" value="<%= ingrstring %>">
+        <!-- <button type= "submit">Add to My recipe</button> -->
+        <button type="submit" class="waves-effect waves-light btn">save to my recipe</button>
     </form>
-    <!-- <a href="/myrecipe" class="waves-effect waves-light btn-small">Save to my recipe</a> -->
 
 
     <form action="/myRecipe/" method="POST"></form>

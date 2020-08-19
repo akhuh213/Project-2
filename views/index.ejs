@@ -1,36 +1,36 @@
 <div class="home">
 
-
+    <a href="/auth/signup" class="waves-effect waves-light btn"><i
+        class="material-icons left">blur_circular</i>Signup</a>
     <h2>Track your calories</h2>
     <div></div>
-    <a href="/auth/signup" class="waves-effect waves-light btn"><i
-            class="material-icons left">blur_circular</i>Signup</a>
+ 
 
     <form method="GET" action="/results">
         <label for="foodSearch">Search for food!</label></br></br>
         <input id="foodSearch" type="text" name="q" required></br></br>
         <label for="calorieRange">Calories range:</label>
         <input id="calorieRange" type="text" name="calories" placeholder="e.g.600-1000">
-        <div class="input-field col s12">
-            <select multiple name='diet'>
-                <option value="" disabled selected>Choose your option</option>
+        <div class="diet">
+            <select multiple id='diet' name='diet'>
+                <option value="" disabled selected>Choose your diet</option>
                 <option value="low-carb">Low-carb</option>
                 <option value="low-fat">Low-fat</option>
                 <option value="high-protein"> High-protein</option>
                 <option value="high-fiber"> High-fiber</option>
             </select>
-            <label>Materialize Multiple Select</label>
+            <label>Diet</label>
         </div>
-        <div class="input-field col s12">
-            <select multiple name='health'>
-                <option value="" disabled selected>Choose your option</option>
+        <div class="preference">
+            <select multiple name='health' id='health'>
+                <option value="" disabled selected>Choose your preference</option>
                 <option value="peanut-free">Peanut-free</option>
                 <option value="tree-nut-free">Tree-nuts-free</option>
                 <option value="gluten-free"> Gluten </option>
                 <option value="vegetarian"> Vegetarian</option>
                 <option value="vegan"> Vegan </option>
             </select>
-            <label>Materialize Multiple Select</label>
+            <label>Preference</label>
 
         </div>
         <input type="submit">
@@ -39,23 +39,3 @@
 </div>
 
 
-<!-- 
-
-
-    <select name="diet" id="diet">
-          <option value="" disabled selected>Choose your option</option>
-          <option value="low-carb">Low-carb</option>
-          <option value="low-fat">Low-fat</option>
-          <option value="high-protein"> High-protein</option>
-          <option value="high-fiber"> High-fiber</option> 
-        </select>
-
-        <label for="health">  Preference:  </label>
-        <select name="health" id="health">
-          <option value="" disabled selected>Choose your option</option>
-          <option value="peanut-free">Peanut-free</option>
-          <option value="tree-nut-free">Tree-nuts-free</option>
-          <option value="gluten-free"> Gluten </option> 
-          <option value="vegetarian"> Vegetarian</option>
-          <option value="vegan"> Vegan </option> 
-        </select> -->
