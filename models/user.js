@@ -43,9 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    weight: DataTypes.DECIMAL,
-    height: DataTypes.DECIMAL,
-    standardCal: DataTypes.INTEGER
+ 
   }, {
     sequelize,
     modelName: 'user',
