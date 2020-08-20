@@ -1,11 +1,17 @@
 
-
+<h3>My Recipes Book </h3>
 
 <div>
+<%if(recipe){  %> 
 <%recipe.forEach(d => { %>
-<%= d.name  %> </br>
-<%= d.ingredient %> </br></br>
 
-<%}) %>   
+<%= d.name  %> <a href="<%= d.recipeUrl%>"> See the Recipe </a></br>
+Calories per serving: <%= d.cal  %> kcal </br>
+
+<form action="/myrecipe/<%=d.id%>?_method=DELETE" method="POST">
+    <button type="submit" class="waves-effect waves-light btn">Delete</button>
+</form>
+
+<%})} %>   
 </div>
 

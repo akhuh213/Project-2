@@ -1,7 +1,40 @@
+
+body {
+  min-height: 90vh;
+  background-image: url('../assets/images/woman.jpg');
+  background-size: 100%;
+  
+}
+
+
 main {
   min-height: 90vh;
+  color: white;
+  margin: 0 auto
 }
 .home {
   margin: 0 auto;
+  width: 400px;
+}
+
+h2 {
+  text-shadow: 2px 2px 5px black;
+}
+label {
+  font-size: 15px;
+  text-shadow: 1px 1px 2px black;
+}
+.search {
+  color: white;
+  font-size: 20px;
+  
+}
+
+.card {
   width: 300px;
+  height: 300px;
+}
+.results{
+  
+  background-image: url('../assets/images/pattern.jpg');
 }

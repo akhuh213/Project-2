@@ -1,0 +1,26 @@
+
+<form method="GET" action="/calorielog/calsearch">
+    <label for="foodSearch">Log your food by searching here!</label></br></br>
+    <input id="foodSearch" type="text" name="ingr" required></br></br>
+    <button type="submit" class="waves-effect waves-light btn">Search</button>
+    </form>
+
+
+
+    <div class= "log">
+
+        <%if (element) {  %> 
+
+        <% element.forEach (e => { %>
+        <% let dated = e.createdAt.toString() %> 
+        <% let date = dated.split(' ', 4 )%> 
+     
+        <%=date  %> 
+        <%= e.food.charAt(0).toUpperCase()+e.food.slice(1) %> 
+        <%= e.calories  %> kcal </br>
+    
+    
+    <% })} %>
+ 
+         
+    </div>

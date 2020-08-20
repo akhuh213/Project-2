@@ -1,6 +1,7 @@
 require('dotenv').config();
 const db = require('./models');
 const express = require('express');
+const methodOverride = require('method-override')
 const layouts = require('express-ejs-layouts');
 const { default: Axios } = require("axios");
 const app = express();
@@ -26,6 +27,7 @@ app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
+app.use(methodOverride('_method'))
 
 
 // secret: What we giving the user to use our site / session cookie 
@@ -73,6 +75,9 @@ app.get('/', function(req,res){
 app.use('/auth', require('./routes/auth'));
 app.use('/results', require ('./routes/result'));
 app.use('/myrecipe', require ('./routes/myrecipe'));
+app.use('/calorielog', require('./routes/calorielog'))
+app.use('/calsearch', require('./routes/calorielog'))
+
 
 
 

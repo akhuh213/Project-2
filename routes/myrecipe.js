@@ -30,7 +30,6 @@ router.get('/',isLoggedIn,(req, res) => {
 
 
 
-
 router.post('/', isLoggedIn, (req, res) => {
     let formData = req.body;
 
@@ -39,13 +38,42 @@ router.post('/', isLoggedIn, (req, res) => {
                 name:formData.name},
         defaults: { name: formData.name,
                     ingredient: formData.ingr,
-                    recipeUrl: formData.url,
+                    recipeUrl: formData.recipeUrl,
                     cal:formData.cal}
     }).then(([newRecipe, created]) =>{
         res.redirect('myrecipe');
     })
     .catch(err => {
         console.log(err)
+    })
+})
+
+
+router.get('/:id',isLoggedIn,(req, res) => {
+
+    db.my_recipe.findAll({
+        where: { userId: req.user.dataValues.id},
+    })
+    .then((recipe) => {
+    res.render('myrecipe',{recipe})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
+
+
+router.delete('/:id',isLoggedIn, (req,res) => {
+    console.log('This is the request id', req.params.id)
+    db.my_recipe.destroy({
+        where: {id:req.params.id}
+    })
+    .then(() => {
+        res.redirect('myrecipe');
+    })
+    .catch((err) => {
+        console.log('ERROR',err)
     })
 })
 

@@ -27,7 +27,6 @@ router.get('/', (req, res) => {
             to: 9,
         }
     }
-
     if (calorie) {
         qs.params.calories = calorie
     }
@@ -43,79 +42,26 @@ router.get('/', (req, res) => {
     }
     if(calorie && healths){
         qs.params.calories = calorie
-        qs.params.health = health
+        qs.params.health = healths
+    }
+    if(diets && healths){
+        qs.params.diet = diets
+        qs.params.health = healths
     }
     if(calorie && diets && healths){
         qs.params.calories = calorie
         qs.params.diet = diets
-        qs.params.health = health
+        qs.params.health = healths
     }
     axios.get(recipeUrl, qs)
         .then(response => {
             let data = response.data.hits
-            console.log('Look at me!!!!!!!!!!!!', data[0].recipe.ingredientLines)
+            // console.log('Look at me!!!!!!!!!!!!', data[0].recipe.url)
             res.render('results', { data })
         }).catch(err => {
             console.log(err)
         })
 })
-//     } else if (diets) {
-//         axios.get(recipeUrl, qs, diet)
-//             .then(response => {
-
-//                 let data = response.data.hits
-//                 res.render('results', { data })
-//             })
-//     } else if (healths) {
-//         axios.get(recipeUrl, qs, health)
-//             .then(response => {
-
-//                 let data = response.data.hits
-//                 res.render('results', { data })
-//             })
-
-//     } else if (calorie, diets) {
-//         axios.get(recipeUrl, qs, cal, diet)
-//             .then(response => {
-
-//                 let data = response.data.hits
-//                 res.render('results', { data })
-//             })
-//     } else if (calorie, healths) {
-//         axios.get(recipeUrl, qs, cal, health)
-//             .then(response => {
-
-//                 let data = response.data.hits
-//                 res.render('results', { data })
-//             })
-//     } else if (calorie, diets, healths) {
-//         axios.get(recipeUrl, qs, cal, diet, health)
-//             .then(response => {
-
-//                 let data = response.data.hits
-//                 res.render('results', { data })
-//             })
-//     } else if (diets, healths) {
-//         axios.get(recipeUrl, qs, diet, health)
-//             .then(response => {
-
-//                 let data = response.data.hits
-//                 res.render('results', { data })
-//             })
-//     } else {
-//         axios.get(recipeUrl, qs)
-//             .then(response => {
-
-//                 let data = response.data.hits
-//                 // console.log('Look at me!!!!!!!!!!!!',data[0].ingredient)
-//                 res.render('results', { data })
-//             }).catch(err => {
-//                 console.log(err)
-//             })
-
-//     }
-// })
-
 
 
 module.exports = router;
