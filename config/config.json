@@ -13,6 +13,6 @@
     "database": "authapp_production",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "use_env_variable": "postgres://qagmkswyklkidt:f8e8f893ddcd351373cbba2b28e737b66c9a71143bb4db0c2e678a854d7494bb@ec2-52-22-94-132.compute-1.amazonaws.com:5432/dbgg9i87t45dap"
+    "use_env_variable": "DATABASE_URL"
   }
 }
