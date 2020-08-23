@@ -4,8 +4,8 @@
 
   
 <form class="cal-search" method="GET" action="/calorielog/calsearch">
-    <label for="foodSearch">Search to Log </label>
-    <input id="food-search" type="text" name="ingr" placehorder=" "required>
+    <label for="foodSearch"> </label>
+    <input id="food-search" type="text" name="ingr" placeholder="Search food here to log" required>
     <button type="submit" class="waves-effect waves-light btn-small"> Search </button>
     </form>
  
@@ -17,7 +17,7 @@
   
   
 
-<div class=table></div>
+
 <%let arrayy =[]%>
   <% if(element) {  %> 
 
@@ -37,15 +37,9 @@
               <td> <%= e.calories  %> kcal</td>
               <td> <form action="/calorielog/<%=e.id%>?_method=DELETE" method="POST">
               <button type="submit" class="waves-effect waves-light btn">Delete</button>
-            
               <a href='/calorielog/<%=e.id%>/edit' button type="submit" class="waves-effect waves-light btn" >Edit</button>               
               </td>
             </form>
-              
-           
-          
-              
-          
             </tr>
           </tbody>
         </table>   
@@ -58,5 +52,6 @@
   <% return a+b;%>
   <%},0);%>
   Your total calories = <%=sum  %> 
+</div>
 </div>
 </div>

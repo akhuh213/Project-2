@@ -139,9 +139,15 @@ color:grey;
   flex-wrap: wrap;
   justify-content: space-around;  
 }
-.table{
-  margin: 40px 80px 40px 40px;;
+.title{
+  margin-bottom: 30px;
+}
+/* .table{
+  margin: 40px 120px;
   
+} */
+.centered{
+  margin: 0 120px;
 }
 .cal-search{
   display: flex;
@@ -150,14 +156,14 @@ color:grey;
   align-content: space-between;
   width: 50%;
   background-color:rgb(244, 230, 232);
-  margin : 40px 0 40px 280px;
+  margin : 50px 0;
   padding: 20px;
   opacity: 0.9;
-
   
 }
-.food-search{
-  width: 400px;
+#food-search{
+  
+  margin: 0 20px;
 }
 
 .cal-results{
@@ -174,13 +180,18 @@ color:grey;
 table{
   background-color: rgb(244, 230, 232);
   opacity: 0.9;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin: 0 80px;
+  
   table-layout: fixed;
+}
+tr{
+  margin: 0 60px;
 }
 
 td{
   color: rgb(48, 46, 46);
+  padding: 13px 10px;
+  
 }
 
 input{
@@ -212,8 +223,4 @@ input{
 }
 #login {
   color:rgba(244, 230, 232, 0.841);
-}
-
-.put{
-  display:none;
 }
