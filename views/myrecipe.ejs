@@ -1,17 +1,27 @@
-
+<div class=log>
 <h3>My Recipes Book </h3>
 
 <div>
-<%if(recipe){  %> 
-<%recipe.forEach(d => { %>
 
-<%= d.name  %> <a href="<%= d.recipeUrl%>"> See the Recipe </a></br>
-Calories per serving: <%= d.cal  %> kcal </br>
+    <div class=table>
+    <%if(recipe){  %> 
+        <%recipe.forEach(d => { %>
 
-<form action="/myrecipe/<%=d.id%>?_method=DELETE" method="POST">
-    <button type="submit" class="waves-effect waves-light btn">Delete</button>
-</form>
+      <table class="centered" class="highlight" > 
+          <tbody>
+            <tr>
+              <td> <%= d.name  %></td>
+              <td> <%= d.cal  %> kcal</td>
+              <td> <a href="<%= d.recipeUrl%>"> See the Recipe </a></td>
+              <td> <form action="/myrecipe/<%=d.id%>?_method=DELETE" method="POST">
+              <button type="submit" class="waves-effect waves-light btn">Delete</button>
+              </form></td>
+               
+            </tr>
+          </tbody>
+        </table>    
+        <%})} %>  
 
-<%})} %>   
+
 </div>
-
+</div>

@@ -1,0 +1,32 @@
+
+
+<% if(element) {  %> 
+
+<% element.forEach (e => { %>
+    <form id="put" action="/calorielog/<%=e.id%>/edit?_method=PUT" method="POST">
+
+    <table class="centered" class="highlight" > 
+        <tbody>
+          <tr>
+            <td> <%= e.Date%></td>
+            <td> <input type="text" id="food" name="food"  placeholder="<%= e.food.charAt(0).toUpperCase()+e.food.slice(1) %>"></td>
+            </td>
+            <td><input type="text" id="calories" name="calories"  placeholder="<%= e.calories  %> " ></td> 
+            <td> 
+                <button type="submit" class="waves-effect waves-light btn" >Submit</button>
+            </form>
+            </td>
+           
+
+         
+        </td>
+            
+        
+          </tr>
+        </tbody>
+      </table>      
+
+
+
+
+<%}) } %> 

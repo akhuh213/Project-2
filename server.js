@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 app.use(methodOverride('_method'))
-
+app.use(express.static("public"))
 
 // secret: What we giving the user to use our site / session cookie 
 // resave: Save the session even if it's modified, make this false 
@@ -76,7 +76,7 @@ app.use('/auth', require('./routes/auth'));
 app.use('/results', require ('./routes/result'));
 app.use('/myrecipe', require ('./routes/myrecipe'));
 app.use('/calorielog', require('./routes/calorielog'))
-app.use('/calsearch', require('./routes/calorielog'))
+// app.use('/calsearch', require('./routes/calorielog'))
 
 
 

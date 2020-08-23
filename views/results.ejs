@@ -10,63 +10,49 @@
 
 
 
-
-<div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src="<%= detail.image%>">
-    </div>
-    <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-      <p><a href="<%=detail.url%>">Link to the recipe</a></p>
-    </div>
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4"><%=detail.label%><i class="material-icons right">close</i></span>
-      <p>Calories per Serving: <%=calPerSer%> kcal
-        diet:<%= detail.dietLabels[0]%>
-            <%= detail.dietLabels[1]%> </br>
-        Preference:
-            <%= detail.healthLabels[0]%>
-            <%= detail.healthLabels[1]%></br>  
-            <%= detail.healthLabels[2]%> 
-            <%= detail.healthLabels[3]%> </br>
-        </p>
-        
+<div class = all-results>
+<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src="<%= detail.image%>">
+          <span class="card-title"><%=detail.label%></span>
+        </div>
+        <div class="card-content">
+            
+            <p><label for="calPerSer">Calories per Serving:  </label>
+                    <%=calPerSer%> kcal</br>
+                    <label for="diet">diet:</label>
+                    <%= detail.dietLabels[0]%>
+                    <%= detail.dietLabels[1]%> </br>
+                    <label for="calPerSer">Preference:</label>
+                    <%= detail.healthLabels[1]%></br>  
+                    <label for="fat">Fat :</label>
+                    <%= detail.totalNutrients.FAT.quantity.toString().split('.',1)%> g 
+                    <label for="carbs">Carbs: </label>
+                    <%= detail.totalNutrients.CHOCDF.quantity.toString().split('.',1) %> g</br>
+                    <label for="fiber"> Fiber :</label>
+                    <%= detail.totalNutrients.FIBTG.quantity.toString().split('.',1) %> g
+                    <label for="protein"> Protein: </label>
+                    <%= detail.totalNutrients.PROCNT.quantity.toString().split('.',1) %> g
+                </p>
+                
+        </div>
+        <div class="card-action">
+          <a class=re-link href="<%=detail.url%>">link to recipe</a>
+        </div>
+      </div>
     </div>
   </div>
 
-</div>
 
 
 
-<div>
-    <h4><%=detail.label%></h4>
-    <img src="<%= detail.image%>"></br>
-    <label for="calPerSer"> Calories per serving: </label>
-    <%= calPerSer  %> kcal</br>
 
-    <label for="diet">Diet:</label>
-    <%= detail.dietLabels[0]%>
-    <%= detail.dietLabels[1]%> </br>
 
-    <label for="health">Preference:</label>
-    <%= detail.healthLabels[0]%>
-    <%= detail.healthLabels[1]%></br>  
-    <%= detail.healthLabels[2]%> 
-    <%= detail.healthLabels[3]%> </br>
 
-    <label for="fat">Fat :</label>
-    <%= detail.totalNutrients.FAT.quantity.toString().split('.',1)%>g 
-    <label for="carbs">Carbs: </label>
-    <%= detail.totalNutrients.CHOCDF.quantity.toString().split('.',1) %> g</br>
-    <label for="fiber"> Fiber :</label>
-    <%= detail.totalNutrients.FIBTG.quantity.toString().split('.',1) %> g
-    <label for="protein"> Protein: </label>
-    <%= detail.totalNutrients.PROCNT.quantity.toString().split('.',1) %> g</br></br>
-
-    <a href="<%=detail.url%>" class="waves-effect waves-light btn-small"> Link to the recipe</a>
-</div>
-<div class= form>
-    <form action="/myrecipe" method="POST">
+<div class= result-form>
+    <form class=recipe-button action="/myrecipe" method="POST">
         <input hidden type="text" name="name" id="name" value="<%= detail.label %>">
         <input hidden type="text" name="cal" id="cal" value="<%= calPerSer %>">
         <input hidden type="text" name="recipeUrl" id="recipeUrl" value="<%= detail.url %>">
@@ -75,17 +61,19 @@
           <% ingrstring=ingrstring+ingr+'; '  %>   
         <%})  %> 
         <input hidden type="text" name="ingr" id="ingr" value="<%= ingrstring %>">
-        <button type="submit" class="waves-effect waves-light btn">save to my recipe</button>
+        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons">add</i> my recipe</button>
     </form>
 
 
-    <form action="/calorielog" method="POST"></form>
+    <form action="/calorielog" method="POST">
 
     <input hidden type="text" name="name" id="name" value="<%= detail.label %>">
     <input hidden type="text" name="cal" id="cal" value="<%= calPerSer %>">
-    <button type="submit" class="waves-effect waves-light btn">Add to Calorie Log</button>
-    </form>
 
+    <button type="submit" class="waves-effect waves-light btn"> <i class="material-icons">add</i>Calorie Log</button>
+   
+    </form>
+</div>
 </div>
 
 <%  }) %>

@@ -49,6 +49,11 @@ router.post('/', isLoggedIn, (req, res) => {
 })
 
 
+
+
+
+
+
 router.get('/:id',isLoggedIn,(req, res) => {
 
     db.my_recipe.findAll({

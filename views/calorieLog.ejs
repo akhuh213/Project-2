@@ -1,26 +1,62 @@
+<div class=log>
 
-<form method="GET" action="/calorielog/calsearch">
-    <label for="foodSearch">Log your food by searching here!</label></br></br>
-    <input id="foodSearch" type="text" name="ingr" required></br></br>
-    <button type="submit" class="waves-effect waves-light btn">Search</button>
+
+
+  
+<form class="cal-search" method="GET" action="/calorielog/calsearch">
+    <label for="foodSearch">Search to Log </label>
+    <input id="food-search" type="text" name="ingr" placehorder=" "required>
+    <button type="submit" class="waves-effect waves-light btn-small"> Search </button>
     </form>
-
-
-
-    <div class= "log">
-
-        <%if (element) {  %> 
-
-        <% element.forEach (e => { %>
-        <% let dated = e.createdAt.toString() %> 
-        <% let date = dated.split(' ', 4 )%> 
-     
-        <%=date  %> 
-        <%= e.food.charAt(0).toUpperCase()+e.food.slice(1) %> 
-        <%= e.calories  %> kcal </br>
-    
-    
-    <% })} %>
  
-         
-    </div>
+    
+
+
+
+
+  
+  
+
+<div class=table></div>
+<%let arrayy =[]%>
+  <% if(element) {  %> 
+
+  <% element.forEach (e => { %>
+
+
+  
+
+
+
+      <table class="centered" class="highlight" > 
+          <tbody>
+            <tr>
+              <td> <%= e.Date%></td>
+              <td> <%= e.food.charAt(0).toUpperCase()+e.food.slice(1) %> 
+              </td>
+              <td> <%= e.calories  %> kcal</td>
+              <td> <form action="/calorielog/<%=e.id%>?_method=DELETE" method="POST">
+              <button type="submit" class="waves-effect waves-light btn">Delete</button>
+            
+              <a href='/calorielog/<%=e.id%>/edit' button type="submit" class="waves-effect waves-light btn" >Edit</button>               
+              </td>
+            </form>
+              
+           
+          
+              
+          
+            </tr>
+          </tbody>
+        </table>   
+        
+  <% arrayy.push(e.calories)%>    
+<%})}  %> 
+
+<div class=sum>
+<%let sum = arrayy.reduce(function(a,b){%>
+  <% return a+b;%>
+  <%},0);%>
+  Your total calories = <%=sum  %> 
+</div>
+</div>

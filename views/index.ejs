@@ -1,14 +1,12 @@
 <div class="home">
 
-    <a href="/auth/signup" class="waves-effect waves-light btn"><i
-        class="material-icons left">blur_circular</i>Signup</a>
-    <h2> Search the balanced recipes! </h2>
+    <h2> Looking for balanced meals? </h2>
     
    
-
+    <div class = recipeSearch>
     <form class= "search" method="GET" action="/results">
-        <label for="foodSearch">Search for food!</label></br></br>
-        <input id="foodSearch" type="text" name="q" required></br></br>
+    </br></br>
+        <input id="foodSearchInput" type="text" name="q" placeholder="Search Here!"required></br></br>
         <label for="calorieRange">Calories range:</label>
         <input id="calorieRange" type="text" name="calories" placeholder="e.g.600-1000">
         <div class="diet">
@@ -26,7 +24,7 @@
                 <option value="" disabled selected>Choose your preference</option>
                 <option value="peanut-free">Peanut-free</option>
                 <option value="tree-nut-free">Tree-nuts-free</option>
-                <option value="gluten-free"> Gluten </option>
+                <option value="gluten-free"> Gluten-free </option>
                 <option value="vegetarian"> Vegetarian</option>
                 <option value="vegan"> Vegan </option>
             </select>
@@ -35,6 +33,7 @@
         </div>
         <button type="submit" class="waves-effect waves-light btn">Search</button>
     </form>
+</div>
 
 </div>
 
