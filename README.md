@@ -19,7 +19,7 @@ This app uses two API database from Edamam.com.
 ## Database (postgresql)
 
 ### Models
-Three models were created using sequelize, user, calorielog, and my_recipe.  
+Three models were created using sequelize, which are user, calorielog, and my_recipe.  
 User model: User name, authentication information
 Calorielog: Food and calories information that user logs
 my_recipe: Recipe information that user saves. 
