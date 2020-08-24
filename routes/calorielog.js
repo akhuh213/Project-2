@@ -55,7 +55,7 @@ router.post('/', isLoggedIn, (req, res) => {
 
 
 
-router.get('/calsearch', isLoggedIn, (req, res) => {
+router.get('/calsearch', isLoggedIn,async (req, res) => {
   
     let qs = {
         params: {
@@ -64,7 +64,7 @@ router.get('/calsearch', isLoggedIn, (req, res) => {
             app_key: FOOD_API_KEY,
         }
     }    
-    axios.get(foodUrl,qs)
+    await axios.get(foodUrl,qs)
     .then(response => {
         console.log(response.data.hints[0])
         let data = response.data.hints
