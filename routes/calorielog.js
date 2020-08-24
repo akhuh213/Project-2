@@ -7,7 +7,7 @@ const db = require('../models');
 const isLoggedIn = require('../middleware/isLoggedIn');
 
 const { response } = require('express');
-const { NOW } = require('sequelize');
+// const { NOW } = require('sequelize');
 const { sequelize } = require('../models');
 
 
@@ -20,14 +20,13 @@ const TODAY = new Date().toDateString().split("T").toString().slice(3)
 
 
 
-router.get('/',isLoggedIn,(req, res) => {
-console.log(new Date())
-console.log(TODAY)
-console.log(new Date())
-    db.calorieLog.findAll({
+router.get('/',isLoggedIn,async (req, res) => {
+// console.log(new Date())
+// console.log(TODAY)
+// console.log(new Date())
+    await db.calorieLog.findAll({
         where: { userId: req.user.dataValues.id,
-                Date: TODAY
-                    
+                Date: TODAY                    
                 }
     })
     .then((element) => {

@@ -77,7 +77,7 @@ app.get('/', function(req,res){
 app.use('/auth', require('./routes/auth'));
 app.use('/results', require ('./routes/result'));
 app.use('/myrecipe', require ('./routes/myrecipe'));
-app.use('/calorielog', require('./routes/calorielog'))
+app.use('/calorielog', require('./routes/calorielog'));
 // app.use('/calsearch', require('./routes/calorielog'))
 
 
