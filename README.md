@@ -1,107 +1,165 @@
-# Express Authentication
+# Calorie Tracker
 
-Express authentication template using Passport + flash messages + custom middleware
+## Introduction
+This app is designed for users who are on a diet. User can search the recipes in certain calories ranges, and save them in 'My recipe' page. Also, user can log the the food and calories that they take for the day on 'caloire log'page. 
+This app uses two API database from Edamam.com. 
 
-## What it includes
+[website](https://track-your-calories.herokuapp.com/)
+[ERD](https://app.diagrams.net/?libs=general;er#Hakhuh213%2FHow-to-make-node%2Fmaster%2FUntitled%20Diagram.drawio)
+[WireFrames](https://app.diagrams.net/#Hakhuh213%2FProject2Ideas%2Fmaster%2FUntitled%20Diagram.drawio)
 
-* Sequelize user model / migration
-* Settings for PostgreSQL
-* Passport and passport-local for authentication
-* Sessions to keep user logged in between pages
-* Flash messages for errors and successes
-* Passwords that are hashed with BCrypt
-* EJS Templating and EJS Layouts
 
-### User Model
+## Technologies
+- Node.js
+- Express
+- Sequelize
+- EJS
+- Postgresql
 
-| Column Name | Data Type | Notes |
-| --------------- | ------------- | ------------------------------ |
-| id | Integer | Serial Primary Key, Auto-generated |
-| name | String | Must be provided |
-| email | String | Must be unique / used for login |
-| password | String | Stored as a hash |
-| createdAt | Date | Auto-generated |
-| updatedAt | Date | Auto-generated |
 
-### Default Routes
+## Database (postgresql)
 
-| Method | Path | Location | Purpose |
-| ------ | ---------------- | -------------- | ------------------- |
-| GET | / | server.js | Home page |
-| GET | /auth/login | auth.js | Login form |
-| GET | /auth/signup | auth.js | Signup form |
-| POST | /auth/login | auth.js | Login user |
-| POST | /auth/signup | auth.js | Creates User |
-| GET | /auth/logout | auth.js | Removes session info |
-| GET | /profile | server.js | Regular User Profile |
+### Models
+Three models were created using sequelize, user, calorielog, and my_recipe.  
+User model: User name, authentication information
+Calorielog: Food and calories information that user logs
+my_recipe: Recipe information that user saves. 
+More information about models and association are in ERD 
+[ERD](https://app.diagrams.net/?libs=general;er#Hakhuh213%2FHow-to-make-node%2Fmaster%2FUntitled%20Diagram.drawio)
 
-## Steps To Use
 
-#### 1. Create a new repo on Github and use your 'express-authentication' as the template
+## Coding 
+### Search Engines with several options 
 
-When we are finished with this boilerplate, we are going to make it a template on Github that will allow us to create a new repo on Github with all this code already loaded in.
-* Go to `github.com` and create a new repository. In the template dropdown, choose this template.
-* Clone your new repo to your local machine
-* Get Codin'!
-
-#### 2. Delete any .keep files
-
-The `.keep` files are there to maintain the file structure of the auth. If there is a folder that has nothing in it, git won't add it. The dev work around is to add a file to it that has nothing in it, just forces git to keep the folder so we can use it later.
-
-#### 3. Install node modules from the package.json
-
-```
-npm install
-```
-
-(Or just `npm i` for short)
-
-#### 4. Customize with new project name
-
-Remove defaulty type stuff. Some areas to consider are:
-
-* Title in `layout.ejs`
-* Description/Repo Link in `package.json`
-* Remove boilerplate's README content and replace with new project's readme
-
-#### 5. Create a new database for the new project
-
-Using the sequelize command line interface, you can create a new database from the terminal.
-
-```
-createdb <new_db_name>
-```
-
-#### 6. Update `config.json`
-
-* Change the database name
-* Other settings are likely okay, but check username, password, and dialect
-
-#### 7. Check the models and migrations for relevance to your project's needs
-
-For example, if your project requires a birthdate field, then don't add that in there. 
-
-> When changing your models, update both the model and the migration.
-
-#### 8. Run the migrations
-
-```
-sequelize db:migrate
+``` javascript
+router.get('/', (req, res) => {
+    let food = req.query.q
+    let calorie = req.query.calories
+    let diets = req.query.diet
+    let healths = req.query.health
+    let qs = {
+        params: {
+            q: food,
+            app_id: RECIPE_API_ID,
+            app_key: RECIPE_API_KEY,
+            from: 0,
+            to: 12,
+        }
+    }
+    if (calorie) {
+        qs.params.calories = calorie
+    }
+    if (diets) {
+        qs.params.diet = diets
+    }
+    if (healths) {
+        qs.params.health = healths
+    }
+    if (calorie && diets){
+        qs.params.calories = calorie
+        qs.params.diet = diets
+    }
+    if(calorie && healths){
+        qs.params.calories = calorie
+        qs.params.health = healths
+    }
+    if(diets && healths){
+        qs.params.diet = diets
+        qs.params.health = healths
+    }
+    if(calorie && diets && healths){
+        qs.params.calories = calorie
+        qs.params.diet = diets
+        qs.params.health = healths
+    }
+    axios.get(recipeUrl, qs)
+        .then(response => {
+            let data = response.data.hits
+            // console.log('Look at me!!!!!!!!!!!!', data[0].recipe.url)
+            res.render('results', { data })
+        }).catch(err => {
+            console.log(err)
+        })
+})
 ```
 
-#### 9. Add a `.env` file with the following fields:
 
-* SESSION_SECRET: Can be any random string; usually a hash in production
-* PORT: Usually 3000 or 8000
+### Pulling user's data that is made today
 
-#### 10. Run server; make sure it works
+``` javascript
+const TODAY = new Date().toDateString().split("T").toString().slice(3)
 
+router.get('/',isLoggedIn,async (req, res) => {
+
+    await db.calorieLog.findAll({
+        where: { userId: req.user.dataValues.id,
+                Date: TODAY                    
+                }
+    })
+    .then((element) => {
+    res.render('calorielog',{element})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
 ```
-nodemon
+
+### Getting sum of calories and display
+
+``` javascript
+<%let arrayy =[]%>
+<% arrayy.push(e.calories)%> 
+<%let sum = arrayy.reduce(function(a,b){%>
+  <% return a+b;%>
+  <%},0);%>
+  Your total calories = <%=sum  %> 
+  ```
+
+### Setting Put route
+When user clicks edit button on calorie log, git goes to put route where user can update their data. 
+
+```javascript
+
+router.put('/:id/edit',isLoggedIn,(req, res) => {
+    let formData = req.body;
+    db.calorieLog.update({
+        food:formData.food,
+            calories:formData.calories
+    },{
+        where: {id: req.params.id}
+    })
+    .then(() => {
+    res.redirect('complete')
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
+router.get('/:id/complete',isLoggedIn,(req, res) => {
+
+    db.calorieLog.findAll({
+        where: { userId: req.user.dataValues.id,
+                Date: TODAY}
+    })
+    .then((element) => {
+    res.render('calorielog',{element})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
 ```
 
-or
 
-```
-node index.js
-```
+
+
+
+
+
+
+
+
+
+

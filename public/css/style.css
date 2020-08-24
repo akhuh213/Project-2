@@ -2,10 +2,8 @@
 body {
   min-height: 100vh;
   background-image: url('../assets/images/woman.jpg');
-  background-size: 100%;
-  
+  background-size: 100%; 
 }
-
 
 main {
   min-height: 100vh;
@@ -223,4 +221,15 @@ input{
 }
 #login {
   color:rgba(244, 230, 232, 0.841);
+}
+.signup {
+
+  margin: 200px 0 200px 600px;
+  padding: 40px 40px;
+  width: 400px;
+  background-color: rgba(244, 230, 232, 0.841);
+}
+
+#sign {
+  margin-left: 35%;
 }

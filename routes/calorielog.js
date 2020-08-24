@@ -21,9 +21,7 @@ const TODAY = new Date().toDateString().split("T").toString().slice(3)
 
 
 router.get('/',isLoggedIn,async (req, res) => {
-// console.log(new Date())
-// console.log(TODAY)
-// console.log(new Date())
+
     await db.calorieLog.findAll({
         where: { userId: req.user.dataValues.id,
                 Date: TODAY                    

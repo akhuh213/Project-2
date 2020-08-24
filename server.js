@@ -82,13 +82,6 @@ app.use('/calorielog', require('./routes/calorielog'));
 
 
 
-
-
-
-
-
-
-
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log(`🎧 You're listening to the smooth sounds of port ${port} 🎧`);

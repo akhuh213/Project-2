@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-
 const db = require('../models');
 const isLoggedIn = require('../middleware/isLoggedIn');
-
 const { response } = require('express');
 
 
@@ -47,10 +45,6 @@ router.post('/', isLoggedIn, (req, res) => {
         console.log(err)
     })
 })
-
-
-
-
 
 
 
