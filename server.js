@@ -19,16 +19,18 @@ let API_KEY = process.env.EDAMAM_API_KEY
 let API_ID = process.env.EDAMAM_API_ID
 
 
-
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.engine('ejs', require('ejs').renderFile);
 
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
+
 app.use(layouts);
 app.use(methodOverride('_method'))
 app.use(express.static("public"))
+
 
 // secret: What we giving the user to use our site / session cookie 
 // resave: Save the session even if it's modified, make this false 

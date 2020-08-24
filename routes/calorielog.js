@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const Sequelize = require('sequelize')
-const Op = Sequelize.Op;
+// const Sequelize = require('sequelize')
+
 const db = require('../models');
 const isLoggedIn = require('../middleware/isLoggedIn');
 
