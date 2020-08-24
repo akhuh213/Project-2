@@ -4,9 +4,9 @@
 This app is designed for users who are on a diet. User can search the recipes in certain calories ranges, and save them in 'My recipe' page. Also, user can log the the food and calories that they take for the day on 'caloire log'page. 
 This app uses two API database from Edamam.com. 
 
-[website](https://track-your-calories.herokuapp.com/)
-[ERD](https://app.diagrams.net/?libs=general;er#Hakhuh213%2FHow-to-make-node%2Fmaster%2FUntitled%20Diagram.drawio)
-[WireFrames](https://app.diagrams.net/#Hakhuh213%2FProject2Ideas%2Fmaster%2FUntitled%20Diagram.drawio)
+[website](https://track-your-calories.herokuapp.com/)</br>
+[ERD](https://app.diagrams.net/?libs=general;er#Hakhuh213%2FHow-to-make-node%2Fmaster%2FUntitled%20Diagram.drawio)</br>
+[WireFrames](https://app.diagrams.net/#Hakhuh213%2FProject2Ideas%2Fmaster%2FUntitled%20Diagram.drawio)</br>
 
 
 ## Technologies
@@ -15,7 +15,6 @@ This app uses two API database from Edamam.com.
 - Sequelize
 - EJS
 - Postgresql
-
 
 ## Database (postgresql)
 
