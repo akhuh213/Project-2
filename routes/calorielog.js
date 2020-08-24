@@ -28,7 +28,7 @@ router.get('/',isLoggedIn,async (req, res) => {
                 }
     })
     .then((element) => {
-    res.render('calorielog',{element})
+    res.render('calorieLog',{element})
     })
     .catch(err => {
         console.log(err)
@@ -46,7 +46,7 @@ router.post('/', isLoggedIn, (req, res) => {
         // Date: new Date().toDateString()
         
     }).then((data) =>{
-        res.redirect('calorielog');
+        res.redirect('calorieLog');
     })
     .catch(err => {
         console.log(err)
@@ -76,11 +76,6 @@ router.get('/calsearch', isLoggedIn, (req, res) => {
 
 
 
-
-
-
-
-
 router.get('/:id',isLoggedIn,(req, res) => {
 
     db.calorieLog.findAll({
@@ -88,7 +83,7 @@ router.get('/:id',isLoggedIn,(req, res) => {
                 Date: TODAY  },
     })
     .then((element) => {
-    res.render('calorielog',{element})
+    res.render('calorieLog',{element})
     })
     .catch(err => {
         console.log(err)
@@ -103,7 +98,7 @@ router.delete('/:id',isLoggedIn, (req,res) => {
         where: {id:req.params.id}
     })
     .then(() => {
-        res.redirect('calorielog');
+        res.redirect('calorieLog');
     })
     .catch((err) => {
         console.log('ERROR',err)
@@ -152,7 +147,7 @@ router.get('/:id/complete',isLoggedIn,(req, res) => {
                 }
     })
     .then((element) => {
-    res.render('calorielog',{element})
+    res.render('calorieLog',{element})
     })
     .catch(err => {
         console.log(err)
