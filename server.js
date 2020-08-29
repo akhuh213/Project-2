@@ -74,13 +74,16 @@ app.get('/', function(req,res){
   res.render('index')
 })
 
+
 app.use('/auth', require('./routes/auth'));
 app.use('/results', require ('./routes/result'));
 app.use('/myrecipe', require ('./routes/myrecipe'));
 app.use('/calorielog', require('./routes/calorielog'));
 // app.use('/calsearch', require('./routes/calorielog'))
 
-
+app.get('*', (req, res) => {
+  res.render('error')
+})
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {

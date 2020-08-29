@@ -116,7 +116,7 @@ router.get('/',isLoggedIn,async (req, res) => {
   ```
 
 ### Setting Put route
-When user clicks edit button on calorie log, git goes to put route where user can update their data. 
+When user clicks edit button on calorie log, it goes to put route where user can update their data. 
 
 ```javascript
 
