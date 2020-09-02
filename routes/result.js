@@ -59,6 +59,7 @@ router.get('/', (req, res) => {
             // console.log('Look at me!!!!!!!!!!!!', data[0].recipe.url)
             res.render('results', { data })
         }).catch(err => {
+            res.render('error')
             console.log(err)
         })
 })

@@ -26,6 +26,13 @@ my_recipe: Recipe information that user saves.
 More information about models and association are in ERD 
 [ERD](https://app.diagrams.net/?libs=general;er#Hakhuh213%2FHow-to-make-node%2Fmaster%2FUntitled%20Diagram.drawio)
 
+## Installation
+Autho portion was built during the class.
+- npm install dependencies 
+- Create a database
+- Create models and link to the database
+- Create Routes and ejs files in views
+- Style pages in CSS
 
 ## Coding 
 ### Search Engines with several options 

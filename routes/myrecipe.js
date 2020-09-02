@@ -23,6 +23,7 @@ router.get('/',isLoggedIn,(req, res) => {
     })
     .catch(err => {
         console.log(err)
+        res.render('error')
     })
 })
 
@@ -43,6 +44,7 @@ router.post('/', isLoggedIn, (req, res) => {
     })
     .catch(err => {
         console.log(err)
+        res.render('error')
     })
 })
 
@@ -58,6 +60,7 @@ router.get('/:id',isLoggedIn,(req, res) => {
     })
     .catch(err => {
         console.log(err)
+        res.render('error')
     })
 })
 
@@ -73,6 +76,7 @@ router.delete('/:id',isLoggedIn, (req,res) => {
     })
     .catch((err) => {
         console.log('ERROR',err)
+        res.render('error')
     })
 })
 

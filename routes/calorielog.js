@@ -31,7 +31,7 @@ router.get('/',isLoggedIn,async (req, res) => {
     res.render('calorieLog',{element})
     })
     .catch(err => {
-        res.redirect('error')
+        res.render('error')
         console.log(err)
     })
 })
@@ -50,7 +50,7 @@ router.post('/', isLoggedIn, (req, res) => {
         res.redirect('calorieLog');
     })
     .catch(err => {
-        res.redirect('error')
+        res.render('error')
         console.log(err)
     })
 })
@@ -72,7 +72,7 @@ router.get('/calsearch', isLoggedIn,async (req, res) => {
         let data = response.data.hints
         res.render('calsearch',{data})
     }).catch(err => {
-        res.redirect('error')
+        res.render('error')
         console.log(err)
     })
 })
@@ -89,7 +89,7 @@ router.get('/:id',isLoggedIn,(req, res) => {
     res.render('calorieLog',{element})
     })
     .catch(err => {
-        res.redirect('error')
+        res.render('error')
         console.log(err)
     })
 })
@@ -105,7 +105,7 @@ router.delete('/:id',isLoggedIn, (req,res) => {
         res.redirect('calorieLog');
     })
     .catch((err) => {
-        res.redirect('error')
+        res.render('error')
         console.log('ERROR',err)
     })
 })
@@ -121,7 +121,7 @@ router.get('/:id/edit',isLoggedIn,(req, res) => {
     res.render('edit',{element})
     })
     .catch(err => {
-        res.redirect('error')
+        res.render('error')
         console.log(err)
     })
 })
@@ -140,7 +140,7 @@ router.put('/:id/edit',isLoggedIn,(req, res) => {
     res.redirect('complete')
     })
     .catch(err => {
-        res.redirect('error')
+        res.render('error')
         console.log(err)
     })
 })
@@ -157,7 +157,7 @@ router.get('/:id/complete',isLoggedIn,(req, res) => {
     res.render('calorieLog',{element})
     })
     .catch(err => {
-        res.redirect('error')
+        res.render('error')
         console.log(err)
     })
 })
